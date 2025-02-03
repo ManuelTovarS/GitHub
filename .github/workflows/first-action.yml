@@ -1,0 +1,13 @@
+name: First Workflow
+
+on: workflow_dispatch
+
+jobs:
+  firts-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greeting
+        run: echo "Hola desde el steps xdxdx"
+      - name: Print bye
+        run: echo "Chao desde el steps"
+      
