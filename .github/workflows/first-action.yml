@@ -16,7 +16,11 @@ jobs:
         run: echo "Este paso se ejecuta con éxito"
 
       - name: Step C (solo si Step B falló)
-        if: steps.step_b.outcome == 'failure'
-        run: echo "Step B falló, así que yo me ejecuto"
+        run: |
+          if: steps.step_b.outcome == 'failure'
+            echo "entro al if"
+          else: 
+            echo "entro al else"
+          fi
 
       
