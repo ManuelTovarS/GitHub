@@ -3,11 +3,19 @@ name: First Workflow
 on: workflow_dispatch
 
 jobs:
-  firts-job:
+  example-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greeting
-        run: echo "Hola desde el steps xdxdx"
-      - name: Print bye
-        run: echo "Chao desde el steps"
+      - name: Step A
+        id: step_a
+        run: exit 1  # Simula un fallo
+
+      - name: Step B
+        id: step_b
+        run: echo "Este paso se ejecuta con éxito"
+
+      - name: Step C (solo si Step B falló)
+        if: steps.step_b.outcome == 'failure'
+        run: echo "Step B falló, así que yo me ejecuto"
+
       
