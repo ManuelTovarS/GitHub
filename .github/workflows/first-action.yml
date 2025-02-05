@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step A
+        continue-on-error: true
         id: step_a
         run: exit 1  # Simula un fallo
 
