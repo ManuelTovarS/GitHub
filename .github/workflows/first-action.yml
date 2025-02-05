@@ -7,20 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step A
-        continue-on-error: true
         id: step_a
         run: exit 1  # Simula un fallo
 
       - name: Step B
         id: step_b
-        run: echo "Este paso se ejecuta con éxito"
+        run: echo "Éxito en Step B"
 
-      - name: Step C (solo si Step B falló)
+      - name: Step C (evaluación en Bash)
         run: |
-          if: steps.step_b.outcome == 'failure'
+          if [ "${{ steps.step_b.outcome }}" == "failure" ]; then
             echo "entro al if"
-          else: 
+          else
             echo "entro al else"
           fi
+
+
+
 
       
