@@ -10,12 +10,16 @@ jobs:
         id: step_1
         run: exit 1  # Simula un fallo
 
+      - name: Paso en medio
+        id: step_2
+        run: echo hola
+
       - name: Ejecutar solo si `step_1` falló
         if: steps.step_1.outcome == 'failure'
         run: echo "El step_1 falló, así que estoy ejecutando este paso."
 
       - name: Paso normal
-        run: echo "Este paso se ejecuta siempre"
+        run: 'echo "El resultado de step_2 fue: ${{ steps.step_2.outcome }}"'
 
 
       
