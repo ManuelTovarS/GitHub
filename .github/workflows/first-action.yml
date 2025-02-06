@@ -9,7 +9,7 @@ jobs:
       - name: Paso que puede fallar
         continue-on-error: true
         id: step_1
-        run: exit 1  # Simula un fallo
+        run: exit 0  # Simula un fallo
 
       - name: Paso en medio
         id: step_2
