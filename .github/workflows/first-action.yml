@@ -6,24 +6,16 @@ jobs:
   example-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Step A
-        continue-on-error: true
-        id: step_a
+      - name: Paso que puede fallar
+        id: step_1
         run: exit 1  # Simula un fallo
 
-      - name: Step B
-        id: step_b
-        run: echo "Éxito en Step B"
+      - name: Ejecutar solo si `step_1` falló
+        if: steps.step_1.outcome == 'failure'
+        run: echo "El step_1 falló, así que estoy ejecutando este paso."
 
-      - name: Step C (evaluación en Bash)
-        run: |
-          if [ "${{ steps.step_b.outcome }}" == "failure" ]; then
-            echo "entro al if"
-          else
-            echo "entro al else"
-          fi
-
-
+      - name: Paso normal
+        run: echo "Este paso se ejecuta siempre"
 
 
       
